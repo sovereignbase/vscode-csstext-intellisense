@@ -2,7 +2,7 @@
   "name": "vscode-csstext-intellisense",
   "displayName": "cssText IntelliSense",
   "description": "CSS syntax highlighting and completions for HTMLElement.style.cssText template literals.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publisher": "sovereignbase",
   "license": "Apache-2.0",
   "author": "Jori Lehtinen",
