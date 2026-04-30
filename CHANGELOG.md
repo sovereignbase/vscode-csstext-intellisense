@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/sovereignbase/vscode-csstext-intellisense/compare/v1.2.0...v1.2.1) (2026-04-30)
+
+
+### Bug Fixes
+
+* highlighting behavior, and suggestion behaviour ([c27b5b4](https://github.com/sovereignbase/vscode-csstext-intellisense/commit/c27b5b47bc69bb8c0deaa934fee6646b22ff14e1))
+
 ## [1.2.0](https://github.com/sovereignbase/vscode-csstext-intellisense/compare/v1.1.1...v1.2.0) (2026-04-30)
 
 
