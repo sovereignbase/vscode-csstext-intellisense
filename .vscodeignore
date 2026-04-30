@@ -8,6 +8,13 @@ benchmark/**
 coverage/**
 AGENTS.md
 node_modules/**
+!node_modules/
+!node_modules/@vscode/
+!node_modules/@vscode/l10n/**
+!node_modules/vscode-css-languageservice/**
+!node_modules/vscode-languageserver-textdocument/**
+!node_modules/vscode-languageserver-types/**
+!node_modules/vscode-uri/**
 spec/**
 test/**
 *.vsix

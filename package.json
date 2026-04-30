@@ -49,6 +49,9 @@
         ],
         "embeddedLanguages": {
           "meta.embedded.block.css": "css"
+        },
+        "tokenTypes": {
+          "meta.embedded.block.css": "other"
         }
       }
     ]
@@ -68,5 +71,8 @@
     "@vscode/vsce": "^3.2.0",
     "prettier": "^3.8.3",
     "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "vscode-css-languageservice": "^6.3.10"
   }
 }

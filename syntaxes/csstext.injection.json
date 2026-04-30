@@ -3,7 +3,7 @@
   "injectionSelector": "L:source.js, L:source.jsx, L:source.ts, L:source.tsx",
   "patterns": [
     {
-      "name": "meta.embedded.block.css",
+      "name": "meta.css-text.template.js",
       "begin": "(\\.style\\.cssText\\s*=\\s*)(`)",
       "beginCaptures": {
         "1": {
@@ -19,12 +19,37 @@
           "name": "punctuation.definition.string.template.end.js"
         }
       },
-      "contentName": "source.css",
+      "contentName": "meta.embedded.block.css source.css",
       "patterns": [
+        {
+          "include": "#template-substitution"
+        },
         {
           "include": "source.css"
         }
       ]
     }
-  ]
+  ],
+  "repository": {
+    "template-substitution": {
+      "name": "meta.embedded.expression.js",
+      "begin": "(\\$\\{)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.section.embedded.begin.js"
+        }
+      },
+      "end": "(\\})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.section.embedded.end.js"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.ts"
+        }
+      ]
+    }
+  }
 }
