@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/sovereignbase/vscode-csstext-intellisense/compare/v1.0.0...v1.1.0) (2026-04-30)
+
+
+### Features
+
+* first version, fixed ci ([c1c861b](https://github.com/sovereignbase/vscode-csstext-intellisense/commit/c1c861ba968704b5953f7ffe0ed5ed25a9dfd9e5))
+
 ## 1.0.0 (2026-04-30)
 
 
