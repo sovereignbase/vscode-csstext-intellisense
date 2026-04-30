@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/sovereignbase/vscode-csstext-intellisense/compare/v1.1.0...v1.1.1) (2026-04-30)
+
+
+### Bug Fixes
+
+* added an icon ([91ce4ad](https://github.com/sovereignbase/vscode-csstext-intellisense/commit/91ce4ad9bfabb28b11575847a246216f02d544b7))
+
 ## [1.1.0](https://github.com/sovereignbase/vscode-csstext-intellisense/compare/v1.0.0...v1.1.0) (2026-04-30)
 
 
