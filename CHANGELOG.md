@@ -1,5 +1,1 @@
 # Changelog
-
-## version - date
-
-- changes

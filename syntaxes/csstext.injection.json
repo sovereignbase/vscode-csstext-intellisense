@@ -1,0 +1,30 @@
+{
+  "scopeName": "inline.csstext.injection",
+  "injectionSelector": "L:source.js, L:source.jsx, L:source.ts, L:source.tsx",
+  "patterns": [
+    {
+      "name": "meta.embedded.block.css",
+      "begin": "(\\.style\\.cssText\\s*=\\s*)(`)",
+      "beginCaptures": {
+        "1": {
+          "name": "meta.property.object.js"
+        },
+        "2": {
+          "name": "punctuation.definition.string.template.begin.js"
+        }
+      },
+      "end": "((?<!\\\\)`)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.template.end.js"
+        }
+      },
+      "contentName": "source.css",
+      "patterns": [
+        {
+          "include": "source.css"
+        }
+      ]
+    }
+  ]
+}

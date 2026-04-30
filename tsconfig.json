@@ -1,16 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ES2024",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "rootDir": "src",
+    "target": "ES2022",
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "lib": ["ES2022"],
     "outDir": "dist",
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
+    "rootDir": "src",
     "strict": true,
     "skipLibCheck": true,
-    "lib": ["es2024", "dom", "dom.iterable", "webworker"]
+    "sourceMap": true
   },
   "include": ["src"]
 }

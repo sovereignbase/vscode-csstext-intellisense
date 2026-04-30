@@ -1,76 +1,71 @@
 {
-  "type": "module",
+  "name": "vscode-csstext-intellisense",
+  "displayName": "cssText IntelliSense",
+  "description": "CSS syntax highlighting and completions for HTMLElement.style.cssText template literals.",
+  "version": "0.0.1",
+  "publisher": "sovereignbase",
   "license": "Apache-2.0",
-  "name": "@sovereignbase/package-name",
-  "version": "0.0.0",
-  "description": "",
-  "keywords": [
-    "typescript",
-    "sovereignbase"
-  ],
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "default": "./dist/index.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "engines": {
-    "node": ">=20"
-  },
-  "files": [
-    "dist",
-    "LICENSE",
-    "README.md"
-  ],
-  "sideEffects": false,
-  "scripts": {
-    "format": "prettier . --write",
-    "build": "tsup",
-    "test": "npm run build && node test/run-coverage.mjs && node test/e2e/run.mjs",
-    "bench": "npm run build && node benchmark/bench.js",
-    "prepare": "husky",
-    "prepublishOnly": "npm run test && npm run bench"
-  },
-  "c8": {
-    "all": true,
-    "include": [
-      "dist/**/*.js"
-    ],
-    "exclude": [
-      "dist/**/*.d.ts",
-      "test/**",
-      "benchmark/**",
-      "playwright.config.ts"
-    ]
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^20.5.0",
-    "@commitlint/config-conventional": "^20.5.0",
-    "@playwright/test": "^1.59.1",
-    "@types/node": "^25.6.0",
-    "c8": "^11.0.0",
-    "edge-runtime": "^4.0.1",
-    "fast-glob": "^3.3.3",
-    "husky": "^9.1.7",
-    "playwright": "^1.59.1",
-    "prettier": "^3.8.3",
-    "tsup": "^8.5.1",
-    "typedoc": "^0.28.19",
-    "typescript": "^5.9.3",
-    "wrangler": "^4.84.1"
-  },
+  "author": "Jori Lehtinen",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sovereignbase/package-name.git"
+    "url": "https://github.com/sovereignbase/vscode-csstext-intellisense.git"
   },
   "bugs": {
-    "url": "https://github.com/sovereignbase/package-name/issues"
+    "url": "https://github.com/sovereignbase/vscode-csstext-intellisense/issues"
   },
-  "homepage": "https://sovereignbase.dev/package-name"
+  "homepage": "https://github.com/sovereignbase/vscode-csstext-intellisense#readme",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "css",
+    "csstext",
+    "intellisense",
+    "template-literals",
+    "vscode-extension"
+  ],
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "grammars": [
+      {
+        "scopeName": "inline.csstext.injection",
+        "path": "./syntaxes/csstext.injection.json",
+        "injectTo": [
+          "source.js",
+          "source.jsx",
+          "source.ts",
+          "source.tsx"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.block.css": "css"
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "format": "prettier . --write",
+    "package": "vsce package",
+    "test": "npm run build && node test/run.mjs && npm run package",
+    "vscode:prepublish": "npm run build",
+    "watch": "tsc -w -p ."
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "@types/vscode": "^1.90.0",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.2.0",
+    "prettier": "^3.8.3",
+    "typescript": "^6.0.3"
+  }
 }
