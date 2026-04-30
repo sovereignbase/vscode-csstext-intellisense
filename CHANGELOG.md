@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.2](https://github.com/sovereignbase/vscode-csstext-intellisense/compare/v1.2.1...v1.2.2) (2026-04-30)
+
+
+### Bug Fixes
+
+* fixed syntex highlight scope to property declarations instead of top level stylesheet ([ce4e6ad](https://github.com/sovereignbase/vscode-csstext-intellisense/commit/ce4e6ad760b0fce39d48f8874b6a578b70b83fec))
+* fixed syntex highlight scope to property declarations instead of top level stylesheet, ci problem fix ([a258919](https://github.com/sovereignbase/vscode-csstext-intellisense/commit/a258919bc031c7d282fe6319a04e62dcade09847))
+
 ## [1.2.1](https://github.com/sovereignbase/vscode-csstext-intellisense/compare/v1.2.0...v1.2.1) (2026-04-30)
 
 
