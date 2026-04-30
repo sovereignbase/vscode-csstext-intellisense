@@ -60,7 +60,7 @@
     "build": "tsc -p .",
     "format": "prettier . --write",
     "package": "vsce package",
-    "test": "npm run build && node test/run.mjs && npm run package",
+    "test": "npm run build && node test/run.mjs && node test/syntax.mjs && npm run package",
     "vscode:prepublish": "npm run build",
     "watch": "tsc -w -p ."
   },
@@ -70,7 +70,9 @@
     "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.2.0",
     "prettier": "^3.8.3",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.3.2"
   },
   "dependencies": {
     "vscode-css-languageservice": "^6.3.10"

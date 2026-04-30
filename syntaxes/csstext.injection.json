@@ -22,15 +22,73 @@
       "contentName": "meta.embedded.block.css source.css",
       "patterns": [
         {
-          "include": "#template-substitution"
-        },
-        {
-          "include": "source.css"
+          "include": "#declaration-list"
         }
       ]
     }
   ],
   "repository": {
+    "declaration-list": {
+      "patterns": [
+        {
+          "include": "source.css#comment-block"
+        },
+        {
+          "include": "source.css#escapes"
+        },
+        {
+          "include": "#template-substitution"
+        },
+        {
+          "include": "source.css#font-features"
+        },
+        {
+          "begin": "(?x)(?:\\G|^|(?<=;))(\\s*)((?:[-a-zA-Z_]|[^\\x00-\\x7F])(?:[-a-zA-Z0-9_]|[^\\x00-\\x7F]|\\\\(?:[0-9a-fA-F]{1,6}|.))*)\\s*(:)\\s*",
+          "beginCaptures": {
+            "2": {
+              "name": "meta.property-name.css",
+              "patterns": [
+                {
+                  "include": "source.css#property-names"
+                }
+              ]
+            },
+            "3": {
+              "name": "punctuation.separator.key-value.css"
+            }
+          },
+          "end": "\\s*(;)|\\s*(?=`|\\n\\s*(?:--|[-a-zA-Z]+\\s*:))",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.terminator.rule.css"
+            }
+          },
+          "contentName": "meta.property-value.css",
+          "patterns": [
+            {
+              "include": "#template-substitution"
+            },
+            {
+              "include": "source.css#property-values"
+            }
+          ]
+        },
+        {
+          "begin": "(?:\\G|^|(?<=;))\\s*(?=[-a-zA-Z])",
+          "end": "$|(?![-a-zA-Z])",
+          "name": "meta.property-name.css",
+          "patterns": [
+            {
+              "include": "source.css#property-names"
+            }
+          ]
+        },
+        {
+          "match": ";",
+          "name": "punctuation.terminator.rule.css"
+        }
+      ]
+    },
     "template-substitution": {
       "name": "meta.embedded.expression.js",
       "begin": "(\\$\\{)",
