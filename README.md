@@ -1,50 +1,64 @@
 # cssText IntelliSense
 
-CSS syntax highlighting and completions for `HTMLElement.style.cssText` template literals in JavaScript, TypeScript, JSX, and TSX files.
+Write inline CSS in `HTMLElement.style.cssText` template literals with syntax highlighting and focused IntelliSense in VS Code.
 
 ```ts
 element.style.cssText = `
   display: flex;
   position: absolute;
   inset: 0;
+  color: inherit;
 `
 ```
 
-## Features
+## What it does
 
-- CSS TextMate injection inside direct `style.cssText` template literal assignments.
-- CSS property completions for common layout, box, text, and interaction properties.
-- Value completions for common properties such as `display`, `position`, `overflow`, `cursor`, `color`, and `opacity`.
+`cssText IntelliSense` makes direct `style.cssText` assignments easier to read and edit in JavaScript and TypeScript projects.
 
-## Installation
+- Highlights CSS inside `style.cssText` template literals.
+- Suggests common CSS properties such as `display`, `position`, `inset`, `width`, `height`, `color`, `background`, `overflow`, and `cursor`.
+- Suggests common values for supported properties such as `display`, `position`, `overflow`, `pointer-events`, `user-select`, `white-space`, `color`, `background`, and `opacity`.
+- Works in JavaScript, TypeScript, JSX, and TSX files.
 
-Install the packaged `.vsix` from VS Code:
+## Example
 
-```sh
-code --install-extension vscode-csstext-intellisense-0.0.1.vsix
+```ts
+const panel = document.createElement('section')
+
+panel.style.cssText = `
+  display: grid;
+  position: fixed;
+  inset: 0;
+  overflow: auto;
+  background: transparent;
+`
 ```
 
-Or install it from the Visual Studio Marketplace after publication.
+Place the cursor inside the template literal and start typing a CSS property or value.
 
-## Development
+## Supported Pattern
 
-```sh
-npm install
-npm run build
-npm run package
-```
-
-Press F5 in VS Code to run the extension host from this repository.
-
-## Scope
-
-This extension intentionally targets the direct assignment form first:
+The extension targets direct assignments to `HTMLElement.style.cssText`:
 
 ```ts
 element.style.cssText = `display: flex;`
 ```
 
-Template interpolation inside `cssText` is highlighted as CSS text, not parsed as JavaScript.
+Template interpolation is highlighted as part of the CSS text. The extension does not try to evaluate JavaScript expressions inside the template literal.
+
+## Why use it
+
+VS Code already has excellent CSS tooling, but inline `cssText` strings are usually treated like plain JavaScript strings. This extension brings lightweight CSS editing support to that small but useful pattern without changing your runtime code.
+
+## Requirements
+
+VS Code 1.90.0 or newer.
+
+## Repository
+
+Source code and issues:
+
+https://github.com/sovereignbase/vscode-csstext-intellisense
 
 ## License
 

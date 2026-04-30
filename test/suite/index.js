@@ -17,23 +17,25 @@ async function run() {
       '  ',
       '`',
       '',
-    ].join('\n'),
+    ].join('\n')
   )
 
-  const document = await vscode.workspace.openTextDocument(vscode.Uri.file(file))
+  const document = await vscode.workspace.openTextDocument(
+    vscode.Uri.file(file)
+  )
   await vscode.languages.setTextDocumentLanguage(document, 'typescript')
   await vscode.window.showTextDocument(document)
 
   const propertyCompletions = await vscode.commands.executeCommand(
     'vscode.executeCompletionItemProvider',
     document.uri,
-    new vscode.Position(2, 2),
+    new vscode.Position(2, 2)
   )
 
   assert.ok(propertyCompletions, 'expected property completion list')
   assert.ok(
     propertyCompletions.items.some((item) => item.label === 'display'),
-    'expected display property completion inside style.cssText template',
+    'expected display property completion inside style.cssText template'
   )
 
   const valueEdit = new vscode.WorkspaceEdit()
@@ -43,13 +45,13 @@ async function run() {
   const valueCompletions = await vscode.commands.executeCommand(
     'vscode.executeCompletionItemProvider',
     document.uri,
-    new vscode.Position(2, 11),
+    new vscode.Position(2, 11)
   )
 
   assert.ok(valueCompletions, 'expected value completion list')
   assert.ok(
     valueCompletions.items.some((item) => item.label === 'flex'),
-    'expected flex value completion after display property',
+    'expected flex value completion after display property'
   )
 }
 
