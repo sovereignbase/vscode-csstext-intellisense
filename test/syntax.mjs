@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
-import { readFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import { readdir, readFile } from 'node:fs/promises'
+import { join, sep } from 'node:path'
 import textmate from 'vscode-textmate'
 import oniguruma from 'vscode-oniguruma'
 
@@ -8,25 +8,22 @@ const { parseRawGrammar, Registry } = textmate
 const { loadWASM, OnigScanner, OnigString } = oniguruma
 
 const root = process.cwd()
-const extensionRoot = join(
-  root,
-  '.vscode-test',
-  'vscode-win32-x64-archive-1.90.0',
-  'resources',
-  'app',
-  'extensions'
-)
+const vscodeTestRoot = join(root, '.vscode-test')
+const typescriptGrammarPath = await findVscodeGrammar([
+  'extensions',
+  'typescript-basics',
+  'syntaxes',
+  'TypeScript.tmLanguage.json',
+])
+const cssGrammarPath = await findVscodeGrammar([
+  'extensions',
+  'css',
+  'syntaxes',
+  'css.tmLanguage.json',
+])
 const grammars = new Map([
-  [
-    'source.ts',
-    join(
-      extensionRoot,
-      'typescript-basics',
-      'syntaxes',
-      'TypeScript.tmLanguage.json'
-    ),
-  ],
-  ['source.css', join(extensionRoot, 'css', 'syntaxes', 'css.tmLanguage.json')],
+  ['source.ts', typescriptGrammarPath],
+  ['source.css', cssGrammarPath],
   [
     'inline.csstext.injection',
     join(root, 'syntaxes', 'csstext.injection.json'),
@@ -161,4 +158,48 @@ function renderTokens(tokens) {
   return tokens
     .map((token) => `${JSON.stringify(token.text)} ${token.scopes.join(' ')}`)
     .join('\n')
+}
+
+async function findVscodeGrammar(suffixSegments) {
+  const suffix = suffixSegments.join('/')
+  const matches = await findFilesBySuffix(vscodeTestRoot, suffix)
+  const match = matches
+    .sort((left, right) => rankGrammarPath(right) - rankGrammarPath(left))
+    .at(0)
+
+  if (!match) {
+    throw new Error(
+      `Could not find VS Code grammar under .vscode-test: ${suffix}`
+    )
+  }
+
+  return match
+}
+
+async function findFilesBySuffix(directory, suffix) {
+  const entries = await readdir(directory, { withFileTypes: true })
+  const matches = []
+
+  for (const entry of entries) {
+    const path = join(directory, entry.name)
+
+    if (entry.isDirectory()) {
+      matches.push(...(await findFilesBySuffix(path, suffix)))
+      continue
+    }
+
+    if (normalizePath(path).endsWith(suffix)) {
+      matches.push(path)
+    }
+  }
+
+  return matches
+}
+
+function normalizePath(path) {
+  return path.split(sep).join('/')
+}
+
+function rankGrammarPath(path) {
+  return normalizePath(path).includes('1.90.0') ? 1 : 0
 }
